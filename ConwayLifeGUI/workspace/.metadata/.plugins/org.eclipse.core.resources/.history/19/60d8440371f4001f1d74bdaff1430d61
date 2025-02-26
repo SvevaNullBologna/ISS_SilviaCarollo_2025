@@ -1,0 +1,22 @@
+package conway;
+
+public class Cell {
+	private Integer row;
+	private Integer column;
+	private Boolean isAlive;
+	
+	public Cell(int row, int column) { 
+		this.row = row;
+		this.column = column;
+		this.isAlive = false;
+	}
+	
+	public Boolean changeState() {
+		return (this.isAlive = !this.isAlive);
+	}
+	
+	public Boolean getState(){
+		return isAlive;
+	}
+	
+}

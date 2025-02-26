@@ -1,0 +1,11 @@
+package conway;
+
+public class Grid {
+	private Integer m_rows;
+	private Integer n_columns;
+	private  Cell[][] structure;
+	
+	public Grid() {
+		
+	}
+}

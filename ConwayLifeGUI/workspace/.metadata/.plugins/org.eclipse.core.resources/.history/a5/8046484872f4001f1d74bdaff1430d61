@@ -1,0 +1,28 @@
+package conway;
+
+public class Grid {
+	private Integer m_rows;
+	private Integer n_columns;
+	private  Cell[][] structure;
+	
+	public Grid(int rows, int columns) {
+		this.m_rows = rows;
+		this.n_columns = columns;
+		
+		this.structure = new Cell[rows][columns]; 
+		
+		for(int i=0; i<rows; i++) {
+			for(int j=0; j<columns; j++) {
+				structure[i][j] = new Cell(i,j);
+			}
+		}
+	}
+
+	public Grid() {
+		this(10,20);
+	}
+	
+	public void killAllCells() {
+		
+	}
+}

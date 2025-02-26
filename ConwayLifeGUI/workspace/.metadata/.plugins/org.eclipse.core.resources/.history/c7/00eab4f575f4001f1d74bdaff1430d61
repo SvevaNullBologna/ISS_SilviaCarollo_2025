@@ -1,0 +1,25 @@
+package conway;
+
+public class Cell {
+	private Boolean isAlive;
+	
+	public Cell(int row, int column) { 
+		this.isAlive = false;
+	}
+	
+	public void killCell() {
+		this.isAlive = false;
+	}
+	public void reliveCell() {
+		this.isAlive = true;
+	}
+	
+	public Boolean changeState() {
+		return (this.isAlive = !this.isAlive);
+	}
+	
+	public Boolean getState(){
+		return isAlive;
+	}
+	
+}
