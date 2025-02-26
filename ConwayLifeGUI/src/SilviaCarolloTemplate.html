@@ -240,9 +240,53 @@ div.imagedesc{
 <div class="body"> 
 <h2>Introduction</h2>
  
+<p> Lo scopo del progetto è creare un'interfaccia grafica che interagisce con l'utente a livello visivo (GUI) per il gioco ConwayLife, un automa cellulare ideato da John Conway.<br>
+
+Un automa cellulare è un modello matematico usato per descrivere l'evoluzione di sistemi complessi discreti, ovvero sistemi composti da molte parti che interagiscono tra loro secondo regole definite, evolvendosi in passi successivi.<br>
+<br>
+DESCRIZIONE DEL MODELLO: <br>
+<br>
+Nel caso di ConwayLife, le molteplici parti dell'automa cellulare sono rappresentate da caselle quadrate adiacenti tra loro, che costituiscono una griglia. <br>
+Ogni cella ha otto celle vicine, i cui stati vengono aggiornati simultaneamente nel passaggio da un istante a quello successivo secondo le seguenti regole: <br>
+<br>
+- una cella viva con meno di due celle vive adiacenti muore, per isolamento.<br>
+- una cella viva con due o tre celle vive adiacenti sopravvive alla generazione successiva.<br>
+- una cella viva con più di tre celle vive adiacenti muore, per sovrappopolazione.<br>
+- una cella morta con esattamente tre celle vive adiacenti diventa viva, per riproduzione.<br>
+ </p>
  
 <h2>Requirements</h2>
 
+<p>
+FUNZIONALI:<br>
+<br>
+Il sistema deve permettere all'utente di selezionare quali celle saranno attive.<br>
+Devono essere presenti tre pulsanti: uno di inizio, uno di fine, uno di "clear".<br>
+Quando viene cliccato il pulsante di inizio, inizia il calcolo, ovvero, inizia l'evoluzione dell'automa cellulare.<br>
+L'evoluzione deve essere mostrata, aggiornando istante per istante i colori delle celle.<br>
+Quando viene cliccato il pulsante di fine, il calcolo termina e viene mostrato l'ultimo stato calcolato dell'automa cellulare.<br>
+Quando viene cliccato il pulsante di "clear" tutte le celle della griglia vengono disattivate.<br>
+<br>
+NON FUNZIONALI:<br>
+<br>
+- usabilità: <br>
+	L'interfaccia grafica deve essere semplice e intuitiva. <br>
+	Il sistema deve rappresentare una griglia di dimensioni finite (10 righe, 20 colonne).<br>
+	Il sistema deve permettere la distinzione chiara dello stato di ciascuna cella, utilizzando colori differenti.<br>
+	I tre pulsanti devono essere facilmente distinguibili e non sovrapposti alla griglia.<br>
+	<br>
+- prestazioni:<br>
+	Il sistema deve garantire che l'evoluzione delle celle avvenga senza lag.<br>
+	Il rendering della griglia deve essere fluido durante l'aggiornamento.<br>
+<br>
+- compatibilità:<br>
+	L'interfaccia deve essere compatibile con i principali browser web (Google Chrome, Mozilla Firefox, Safari, Microsoft Edge).<br>
+	L'interfaccia<br>
+- accessibilità: <br>
+        l'interfaccia deve essere navigabile tramite cursore<br>
+        <br>
+<br>
+</p>
  
 <div class="remark">
 Copy here the EXACT text fiven by the customer.
