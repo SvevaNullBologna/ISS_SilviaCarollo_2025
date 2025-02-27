@@ -1,6 +1,6 @@
 package conway;
 
-import conway.structure.Grid;
+import conway.structure.GridGUI;
 
 /*
  * Il core di game of life
@@ -12,8 +12,8 @@ public class Life {
     //La struttura
     private int rows=0;
     private int cols=0;
-    private static Grid grid;
-    private static Grid nextGrid;
+    private static GridGUI grid;
+    private static GridGUI nextGrid;
 
     public Life( int rowsNum, int colsNum ) {
         this.rows   = rowsNum;
@@ -29,8 +29,8 @@ public class Life {
     }
 
     protected void  createGrids() {
-        grid = new Grid(rows, cols);
-        nextGrid = new Grid(rows, cols);
+        grid = new GridGUI(rows, cols);
+        nextGrid = new GridGUI(rows, cols);
         //CommUtils.outyellow("Life | initializeGrids done");
     }
 
@@ -89,20 +89,20 @@ public class Life {
 
 
 
-    protected void computeNextGen( IOutDev outdev ) {
+    protected void computeNextGen( ) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 int n = countNeighborsLive(i,j);
                 applyRules(i, j, n);
-                outdev.displayCell( "" + grid.getStateOfCellAt(i, j));
+                grid.displayCellAt(i, j);
             }
-            outdev.displayCell("\n");  //Va tolta nel caso della GUI?
+            grid.displayChangeOfRow();
         }
-        copyAndResetGrid( outdev );
-        outdev.displayCell("\n");
+        copyAndResetGrid();
+        grid.displayChangeOfRow();
     }
 
-    protected void copyAndResetGrid( IOutDev outdev ) {
+    protected void copyAndResetGrid( ) {
         grid.CopyGrid(nextGrid);
         nextGrid.killAllCells();
     }
@@ -127,19 +127,10 @@ public class Life {
         }
         //CommUtils.outgreen("Life applyRules " + nextGrid   );
     }
-
-    public void switchCellState(int i, int j){ //non più necessario ma per il momento lo teniamo per il testing
-        if( !grid.getStateOfCellAt(i, j)) {
-        	grid.reliveCellAt(i, j);
-		} else if( grid.getStateOfCellAt(i,j)) {
-			grid.killCellAt(i, j);
-		}
+    
+    
+    
+    public void switchCellState(int i, int j) { //per il mock
+    	grid.switchCellAt(i, j);
     }
-
-    public int getCellState( int i, int j  ) {//non più necessario ma per il momento lo teniamo per il testing
-        return   grid.getStateOfCellAt(i, j)? 1 : 0;
-    }
-
-
-
 }

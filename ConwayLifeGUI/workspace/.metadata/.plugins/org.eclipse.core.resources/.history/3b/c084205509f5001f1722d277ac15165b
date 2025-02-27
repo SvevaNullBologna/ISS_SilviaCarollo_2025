@@ -1,0 +1,21 @@
+package conway.structure;
+import conway.IOutDev;
+
+public class CellGUI extends Cell implements IOutDev {
+
+	public CellGUI() {
+		super();
+	}
+
+	@Override
+	public void displayCell(String msg) {
+		System.out.println(isAlive ? "1" : "0");
+	}
+	
+	public static CellGUI toCellGUI(Cell c) {
+		CellGUI cg =  new CellGUI();
+		cg.copyCellState(c);
+		return cg;
+	}
+
+}

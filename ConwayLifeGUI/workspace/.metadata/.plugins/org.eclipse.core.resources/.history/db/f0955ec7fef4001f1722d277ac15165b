@@ -1,0 +1,19 @@
+package conway.structure;
+
+public class GridGUI extends Grid{
+	
+	//ancora non so cosa sia necessario
+
+	public void displayGrid() {
+		for (int i = 0; i < life.getRowsNum(); i++) {
+			for (int j = 0; j < life.getColsNum(); j++) {
+				if (life.getCellState(i,j) == 0) {
+					outdev.displayCell("0");
+                } else {
+                	outdev.displayCell("1");
+                }
+			}
+			outdev.displayCell("\n");
+		}
+	}
+}

@@ -1,0 +1,15 @@
+package conway.structure;
+import conway.IOutDev;
+
+public class CellGUI extends Cell implements IOutDev {
+
+	public CellGUI(int row, int column) {
+		super(row, column);
+	}
+
+	@Override
+	public void displayCell(String msg) {
+		this. ? outdev.displayCell("1") : outdev.displayCell("0");
+	}
+
+}

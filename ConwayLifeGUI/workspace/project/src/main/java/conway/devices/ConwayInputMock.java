@@ -10,6 +10,7 @@ public class ConwayInputMock {
 	public ConwayInputMock(LifeController control, Life life) {
 		this.control = control;
 		this.life    = life;
+		
 	}
 
     public void simulateUserControl(){

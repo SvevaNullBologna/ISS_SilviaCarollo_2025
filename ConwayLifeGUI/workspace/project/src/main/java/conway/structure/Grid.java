@@ -1,9 +1,9 @@
 package conway.structure;
 
 public class Grid {
-	private Integer m_rows;
-	private Integer n_columns;
-	private  Cell[][] structure;
+	protected Integer m_rows;
+	protected Integer n_columns;
+	protected  Cell[][] structure;
 	
 	public Grid(int rows, int columns) {
 		this.m_rows = rows;
@@ -13,7 +13,7 @@ public class Grid {
 		
 		for(int i=0; i<rows; i++) {
 			for(int j=0; j<columns; j++) {
-				structure[i][j] = new Cell(i,j);
+				structure[i][j] = new Cell();
 			}
 		}
 	}
@@ -37,6 +37,11 @@ public class Grid {
 	public void reliveCellAt(int row, int column){
 		structure[row][column].reliveCell();
 	}
+	
+	public void switchCellAt(int row, int column){
+		structure[row][column].isAlive =  !structure[row][column].isAlive;
+	}
+	
 	
 	public Boolean getStateOfCellAt(int row, int column) {
 		return structure[row][column].getState();

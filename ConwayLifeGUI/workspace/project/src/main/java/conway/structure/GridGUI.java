@@ -1,0 +1,29 @@
+package conway.structure;
+
+import conway.IOutDev;
+
+public class GridGUI extends Grid{
+	//ancora non so cosa sia necessario
+	
+	public GridGUI(int rows, int columns) {
+		super(rows, columns);
+	}
+		
+	public void displayGrid() {
+		for (int i = 0; i < this.m_rows; i++) {
+			for (int j = 0; j < this.n_columns; j++) {
+				new CellGUI(structure[i][j]).displayCell();
+			}
+			displayChangeOfRow();
+		}
+	}
+	
+	public void displayChangeOfRow() {
+		System.out.print("\n");
+	}
+	
+	public void displayCellAt(int row, int column) {
+		new CellGUI(this.structure[row][column]).displayCell();
+		
+	}
+}

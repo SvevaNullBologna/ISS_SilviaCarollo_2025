@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="conway25JavaTest" project="project" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="conway.conway25JavaTest" time="5.075" displayname="conway25JavaTest" uniqueid="[engine:junit-vintage]/[runner:conway.conway25JavaTest]">
+    <testcase name="yyy" classname="conway.conway25JavaTest" time="0.0" displayname="yyy" uniqueid="[engine:junit-vintage]/[runner:conway.conway25JavaTest]/[test:yyy(conway.conway25JavaTest)]"/>
+    <testcase name="test1" classname="conway.conway25JavaTest" time="5.075" displayname="test1" uniqueid="[engine:junit-vintage]/[runner:conway.conway25JavaTest]/[test:test1(conway.conway25JavaTest)]"/>
+  </testsuite>
+</testrun>

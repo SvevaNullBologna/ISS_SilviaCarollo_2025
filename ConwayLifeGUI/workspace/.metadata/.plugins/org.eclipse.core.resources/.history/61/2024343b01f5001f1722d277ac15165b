@@ -1,0 +1,5 @@
+package conway.structure;
+
+public class CellGUI {
+
+}

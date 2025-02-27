@@ -23,7 +23,7 @@ public class LifeController {
     public void start(){
 		System.out.println("---------Initial----------");
 		//La griglia è visualizzata con un ciclo
-		displayGrid();
+		//displayGrid();
 		play();
     }
 
@@ -33,7 +33,7 @@ public class LifeController {
 			try {
 				TimeUnit.MILLISECONDS.sleep(generationTime);
 				System.out.println("---------Epoch --- "+i );
-				life.computeNextGen( outdev );
+				life.computeNextGen();
 				//La griglia è visualizzata  'on the fly'
 				//displayGrid();
 			} catch (InterruptedException e) {
@@ -42,17 +42,6 @@ public class LifeController {
 		}
     }
 
-	public void displayGrid() {
-		for (int i = 0; i < life.getRowsNum(); i++) {
-			for (int j = 0; j < life.getColsNum(); j++) {
-				if (life.getCellState(i,j) == 0) {
-					outdev.displayCell("0");
-                } else {
-                	outdev.displayCell("1");
-                }
-			}
-			outdev.displayCell("\n");
-		}
-	}
+	
 
 }

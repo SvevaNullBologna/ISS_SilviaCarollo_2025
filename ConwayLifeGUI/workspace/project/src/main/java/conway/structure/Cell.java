@@ -1,9 +1,9 @@
 package conway.structure;
 
 class Cell {
-	private Boolean isAlive;
+	protected boolean isAlive;
 	
-	public Cell(int row, int column) { 
+	public Cell() { 
 		this.isAlive = false;
 	}
 	
