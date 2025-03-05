@@ -1,17 +1,13 @@
 package conway.structure;
 
-import conway.IOutDev;
-
 public class Cell {
 	private int x;
 	private int y;
 	private boolean isAlive;
-	private IOutDev outDev;
 	
-	public Cell(int x, int y, IOutDev outDev) { 
+	public Cell(int x, int y) { 
 		this.x = x;
 		this.y = y;
-		this.outDev = outDev;
 		this.isAlive = false;
 	}
 	
@@ -42,7 +38,6 @@ public class Cell {
 	public void copyCell(Cell c) {
 		this.x = c.x;
 		this.y = c.y;
-		this.outDev = c.outDev;
 		this.isAlive = c.isAlive;
 	}
 	
@@ -54,8 +49,4 @@ public class Cell {
 		this.isAlive = !this.isAlive;
 	}
 	
-	public void displayCell() {
-		outDev.display(this.getState() ? "1" : "0");
-	}
-
 }

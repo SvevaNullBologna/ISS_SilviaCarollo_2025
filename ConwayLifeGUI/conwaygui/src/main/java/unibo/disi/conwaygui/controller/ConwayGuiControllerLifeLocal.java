@@ -40,8 +40,8 @@ public class ConwayGuiControllerLifeLocal {
 	
 	protected void initLifeApplication() {
 		CommUtils.outyellow("ConwayGuiControllerLifeLocal CREATING ... "  );
-        life             = new Life( 20,20 , new WSIoDev());
-        lifeController   = new LifeController(life);   	
+        life             = new Life( 20,20);
+        lifeController   = new LifeController(life, new WSIoDev());   	
 		CommUtils.outyellow("ConwayGuiControllerLifeLocal injects  lifeController in wsiodev"  );
         WSIoDev.getInstance().setLifeCotrol(lifeController); //injections
 	}

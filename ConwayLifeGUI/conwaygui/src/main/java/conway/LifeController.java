@@ -1,20 +1,20 @@
 package conway;
 import java.util.concurrent.TimeUnit;
-
+import conway.IOutDev;
+import conway.structure.*;
 
 public class LifeController {
     private int generationTime = 1000;
     private  Life life;
+    private IOutDev outdev;
 
-    public LifeController(Life game){
+    public LifeController(Life game, IOutDev outdev){
         this.life = game;
+        this.outdev = outdev;
         configureTheSystem();
      }
 
-    public void display() {
-    	life.displayGame();
-    }
-    
+   
     protected void configureTheSystem() {
 		//CommUtils.outyellow("LifeController | doJob ");
 		life.createGrids();
@@ -24,24 +24,37 @@ public class LifeController {
     public void start(){
 		System.out.println("---------Initial----------");
 		//La griglia è visualizzata con un ciclo
-		//displayGrid();
+		displayGrid();
 		play();
     }
 
     protected void play() {
-		//while (true) {
-		for( int i=1;i<=5;i++){
+    	int i = 0;
+		while (true) {
 			try {
 				TimeUnit.MILLISECONDS.sleep(generationTime);
-				System.out.println("---------Epoch --- "+i );
+				System.out.println("---------Epoch --- " + i );
 				life.computeNextGen();
 				//La griglia è visualizzata  'on the fly'
-				//displayGrid();
+				displayGrid();
+				i++;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
     }
+    
+    private void displayGrid() {
+    	Grid grid = life.getGrid();
+    	for(int i=0; i<grid.getNumberOfRows(); i++) {
+    		for(int j=0; j<grid.getNumberOfColumns(); j++) {
+    			outdev.displayCell(grid.getCellAt(i, j));
+    		}
+    		outdev.display("\n");
+    	}
+    }
+    
+    
     
     public void startTheGame() {
     	

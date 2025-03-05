@@ -14,12 +14,10 @@ public class Life {
     private int cols=0;
     private static Grid grid;
     private static Grid nextGrid;
-    private IOutDev outDev;
 
-    public Life( int rowsNum, int colsNum, IOutDev outDev) {
+    public Life( int rowsNum, int colsNum) {
         this.rows   = rowsNum;
         this.cols   = colsNum;
-        this.outDev = outDev;
         createGrids();   //crea la struttura a griglia
     }
 
@@ -31,11 +29,14 @@ public class Life {
     }
 
     public void createGrids() {
-        grid = new Grid(rows, cols, outDev);
-        nextGrid = new Grid(rows, cols, outDev);
+        grid = new Grid(rows, cols);
+        nextGrid = new Grid(rows, cols);
         //CommUtils.outyellow("Life | initializeGrids done");
     }
 
+    public Grid getGrid() {
+    	return grid;
+    }
     public void resetGrids() {
     	grid.killAllCells();
     	nextGrid.killAllCells();
@@ -98,7 +99,7 @@ public class Life {
                 applyRules(i, j, n);
             }
         }
-        grid.displayGrid();
+        //grid.displayGrid();
         copyAndResetGrid();
     }
 
@@ -126,13 +127,5 @@ public class Life {
             }
         }
         //CommUtils.outgreen("Life applyRules " + nextGrid   );
-    }
-    
-    public void displayGame() {
-    	grid.displayGrid();
-    }
-    
-    public void switchCellState(int i, int j) { 
-    	grid.switchCellAt(i, j);
     }
 }
