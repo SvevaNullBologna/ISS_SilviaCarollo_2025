@@ -231,43 +231,13 @@ div.imagedesc{
 			<a class="sprint" href="../../../Sprint3/Codice/userDoc/Sprint%203.html">Sprint3</a>
 			<bottom-spacer/>
 		</div>
-		
-		dobbiamo dotare l'applicazione java di una gui.
-		Di cosa mi occupo? Java o GUI?
-
-		Cos'è il model, cos'è il view, cos'è il controller?
-		view = ciò che viene visualizzato dall' utente
-		model = il modello dei dati che viene rappresentato 
-		controller =  si interpone tra view e model  -> LifeController
-
-		Life Controller non permette all'utente di inserire alcun input -> while invece che for
-		La view non è solo la view -> aggiungiamo start - stop - clear
-
-		Springboot nasconde il server. C'è un server Tonka che si occupa di gestire le richieste.
-		Vogliamo creare una classe che Springboot referensi come controller.
-
-
-		Architettura client - server.
-		Client = applicazione su questo pc.
-		Server = ce l'ha l'host.
-		
-		La pagina html deve essere aggiornata automaticamente. Per questo si usa la web socket.
-		Possiamo fare in modo che il server risponda solo restituendo un aggiornamento e non l'intera pagina? Sì. Con le web socket
-		
-		Riduciamo il traffico di rete:
-		Se usiamo ajax possiamo impostare dalla nostra applicazione come passare i dati e aggiornare la pagina?
-		human-machine interaction -> machine-machine interaction?
-		
-		Controller lato spring boot.
-		
-		
 -->
 <body>
 <div id="top">
 <h1>LABORATORIO DI INGEGNERIA DEI SISTEMI SOFTWARE <font size="5"></font> </h1>
 </div>  
 
-<div class="body"> 
+<div class="remark"> 
 <h2>Introduction</h2>
  
 <p> Lo scopo del progetto è creare un'interfaccia grafica che interagisce con l'utente a livello visivo (GUI) per il gioco ConwayLife, un automa cellulare ideato da John Conway.<br>
@@ -318,12 +288,6 @@ NON FUNZIONALI:<br>
 <br>
 </p>
  
-<div class="remark">
-Copy here the EXACT text fiven by the customer.
-</div>
-
- 
-
 <h2>Requirement analysis</h2>
  
 <table border = "1">
@@ -365,23 +329,7 @@ Copy here the EXACT text fiven by the customer.
 	</tr>
 </table>
 
- <h2> APPUNTI SUL REFACTORING </h2>
- <p> è stato ritenuto opportuno separare la logica (computazione) dalla rappresentazione dei dati, con l'introduzione delle
-	classi Cell, Grid per poter effettuare ,se necessario, opportune modifiche o aggiungere facilmente funzionalità.
-	<table border="1">
-		<tr>
-			<th> Cell </th>
-			<th> classe che si occupa della logica dell'unità base dell'automa cellulare. </th>
-		</tr>
-		<tr>
-			<th> Grid </th>
-			<th> classe che racchiude tutta la logica riguardante l'automa cellulare, visto come insieme di celle.<br> </th>
-		</tr>
-	</table>
-	La motivazione è poter modificare i meccanismi di rappresentazione senza dover modificare la logica dell'applicazione e viceversa.
-	In questo modo è inoltre molto facile aggiungere nuove funzionalità. 
-	
- </p>
+
 
 <h2>Problem analysis</h2>
 Attori:  utente proprietario, utente spettatore, server, tempo.
@@ -503,7 +451,25 @@ l'utente può visualizzare l'evoluzione delle celle. <br>
 
 
 <h2>Project</h2> 
- 
+
+
+
+<p> è stato ritenuto opportuno separare la logica (computazione) dalla rappresentazione dei dati, con l'introduzione delle
+classi Cell, Grid per poter effettuare ,se necessario, opportune modifiche o aggiungere facilmente funzionalità.
+<table border="1">
+	<tr>
+		<th> Cell </th>
+		<th> classe che si occupa della logica dell'unità base dell'automa cellulare. </th>
+	</tr>
+	<tr>
+		<th> Grid </th>
+		<th> classe che racchiude tutta la logica riguardante l'automa cellulare, visto come insieme di celle.<br> </th>
+	</tr>
+</table>
+La motivazione è poter modificare i meccanismi di rappresentazione senza dover modificare la logica dell'applicazione e viceversa.
+In questo modo è inoltre molto facile aggiungere nuove funzionalità. 
+
+</p>
  
 
 <h2>Testing</h2> 

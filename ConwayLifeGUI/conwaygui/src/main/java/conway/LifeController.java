@@ -1,16 +1,17 @@
 package conway;
 import java.util.concurrent.TimeUnit;
-import conway.IOutDev;
 import conway.structure.*;
 
 public class LifeController {
     private int generationTime = 1000;
     private  Life life;
     private IOutDev outdev;
+    private static boolean playing;
 
     public LifeController(Life game, IOutDev outdev){
         this.life = game;
         this.outdev = outdev;
+        playing = false;
         configureTheSystem();
      }
 
@@ -19,18 +20,9 @@ public class LifeController {
 		//CommUtils.outyellow("LifeController | doJob ");
 		life.createGrids();
     }
-
-    //Called by ConwayInputMock
-    public void start(){
-		System.out.println("---------Initial----------");
-		//La griglia è visualizzata con un ciclo
-		displayGrid();
-		play();
-    }
-
     protected void play() {
     	int i = 0;
-		while (true) {
+		while (playing) {
 			try {
 				TimeUnit.MILLISECONDS.sleep(generationTime);
 				System.out.println("---------Epoch --- " + i );
@@ -57,23 +49,26 @@ public class LifeController {
     
     
     public void startTheGame() {
-    	
+    	playing = true;
+    	play();
     }
     
     public void stopTheGame() {
-    	
+    	playing = false;
     }
 
     public void exitTheGame() {
+    	stopTheGame();
+    	//close page
     	
     }
 
 	public void clearTheGame() {
-	
+		life.resetGrids();
 	}
 
 	public void swithCellState(int i, int j) {
-		
+		life.switchCellState(i, j);
 	}
 
 

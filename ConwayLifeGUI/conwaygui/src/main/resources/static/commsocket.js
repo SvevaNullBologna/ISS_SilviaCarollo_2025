@@ -25,9 +25,9 @@ function discoverServiceUrl(){
 
 function createSocketForGui(serviceUrl){
     //CREAZIONE DELLA CONNESSIONE WEBSOCKET DELLA GUI
-	    wsAddr = "ws://localhost:7110/wsupdates".replace("localhost",serviceUrl)
+	    wsAddr = "ws://localhost:7110/wsupdates".replace("localhost",serviceUrl) //se vogliamo connetterci online, togliamo localhost. Mettiamo l'ip del server
 		console.log("wsAddr="+wsAddr)
-   		socketToGui = new WebSocket(wsAddr);  
+   		socketToGui = new WebSocket(wsAddr);  //la connessione creata è asincrona. Fai connessioni di callback per ottenere info in modo sincrono
         console.log("socketToGui="+socketToGui.url)
 	//FUNZIONI DI CALLBACK 	
 		socketToGui.onopen = function(event) {

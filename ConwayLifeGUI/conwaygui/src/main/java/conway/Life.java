@@ -43,6 +43,9 @@ public class Life {
         //CommUtils.outyellow("Life | initGrids done");
     }
 
+    public void switchCellState(int row, int col) {
+    	grid.switchCellAt(row, col);
+    }
 
     private int countNeighborsLive(int row, int col) {
         int count = 0;
