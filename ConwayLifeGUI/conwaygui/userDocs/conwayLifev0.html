@@ -367,23 +367,15 @@ Copy here the EXACT text fiven by the customer.
 
  <h2> APPUNTI SUL REFACTORING </h2>
  <p> è stato ritenuto opportuno separare la logica (computazione) dalla rappresentazione dei dati, con l'introduzione delle
-	classi Cell, Grid, CellGUI, GridGUI per poter effettuare se necessario opportune modifiche o aggiungere facilmente funzionalità.
+	classi Cell, Grid per poter effettuare ,se necessario, opportune modifiche o aggiungere facilmente funzionalità.
 	<table border="1">
 		<tr>
 			<th> Cell </th>
-			<th> classe che si occupa della logica riguardante l'unità base dell'automa cellulare. </th>
-		</tr>
-		<tr>
-			<th> CellGUI </th>
-			<th> classe che si occupa di gestire la rappresentazione della singola cella. </th>
+			<th> classe che si occupa della logica dell'unità base dell'automa cellulare. </th>
 		</tr>
 		<tr>
 			<th> Grid </th>
-			<th> classe che racchiude tutta la logica riguardante l'automa cellulare, visto come insieme di celle. </th>
-		</tr>
-		<tr>
-			<th> GridGUI </th>
-			<th> classe che gestice la rappresentazione, e il suo aggiornamento, dell'automa cellulare visto come un insieme di celle. </th>
+			<th> classe che racchiude tutta la logica riguardante l'automa cellulare, visto come insieme di celle.<br> </th>
 		</tr>
 	</table>
 	La motivazione è poter modificare i meccanismi di rappresentazione senza dover modificare la logica dell'applicazione e viceversa.
@@ -404,11 +396,48 @@ Attori:  utente proprietario, utente spettatore, server, tempo.
 		<th> È chi gestisce il server e gioca attivamente.<br>
 			 Può controllare le impostazioni e amministrare il gioco. </th>
 		<th>
+			USER STORIES:
 			<ul>
-				<li> START </li>
-				<li> STOP </li>
-				<li> CLEAR </li>
-				<li> EXIT </li>
+				<li> CELLA: 
+					<p>
+						come utente, voglio poter cliccare su una cella per cambiarne lo stato (viva/morta),<br>
+						in modo da impostare lo stato iniziale della griglia.<br>
+						Quando clicco su una cella morta, diventa viva.<br>
+						Quando clicco su una cella viva, diventa morta.<br>
+						Il cambiamento è visibile immediatamente. <br>
+					</p> 
+				 </li>
+				 <li> START:
+				     <p>
+				         Come utente, voglio poter avviare l’evoluzione della griglia,  
+				         in modo da vedere come si sviluppa il sistema nel tempo.  
+				         Quando premo il pulsante "Start", la simulazione deve iniziare.  
+				         Le celle devono aggiornarsi automaticamente secondo le regole di Conway.  
+				     </p>  
+				 </li>
+				 <li> STOP:
+				     <p>
+				         Come utente, voglio poter fermare l’evoluzione della griglia,  
+				         in modo da analizzare lo stato corrente senza che cambi.  
+				         Quando premo il pulsante "Stop", la simulazione deve interrompersi.  
+				         Le celle devono rimanere nello stato attuale fino a una nuova azione.  
+				     </p>  
+				 </li>
+				 <li> CLEAR:
+				     <p>
+				         Come utente, voglio poter svuotare la griglia,  
+				         in modo da resettare lo stato iniziale e ripartire da zero.  
+				         Quando premo il pulsante "Clear", tutte le celle devono diventare morte.  
+				         Nessuna cella deve rimanere viva dopo l’operazione.  
+				     </p>  
+				 </li>
+				 <li> EXIT:
+				     <p>
+				         Come utente, voglio poter chiudere la simulazione e tornare alla schermata principale,  
+				         in modo da poter terminare l’esperienza quando voglio.  
+				         Quando premo il pulsante "Exit", la simulazione deve chiudersi e tornare alla schermata iniziale.  
+				     </p>  
+				 </li>
 			</ul>
 		</th>
 	</tr>
@@ -421,38 +450,55 @@ Attori:  utente proprietario, utente spettatore, server, tempo.
 </table>
 
 
-USER STORIES:
+CASI D'USO :
 <table>
 	<th> ID: START </th>
 	<th> attori: proprietario, server </th>
-	<th> precondizioni: la connessione è attiva; la pagina di conwaygui viene mostrata all'utente correttamente; il gioco non è ancora iniziato; </th>
-	<th> sequenza:  </th>
-	<th> postcondizioni: </th>
+	<th> precondizioni:<br>
+		 la connessione è attiva;<br>
+		  la pagina di conwaygui viene mostrata all'utente correttamente;<br>
+		   il gioco non è ancora iniziato;<br>
+	    </th>
+	<th> sequenza: l'utente preme il pulsante "Start". <br>
+		il server riceve la richiesta e avvia il gioco. <br>
+		la GUI aggiorna lo stato della simulazione e le celle iniziano ad evolversi. <br>
+	</th>
+	<th> postcondizioni: <br>
+	il gioco è in esecuzione. <br>
+l'utente può visualizzare l'evoluzione delle celle. <br>
+</th>
  </table>
- 
  <table>
- 	<th> ID: STOP </th>
- 	<th> attori: proprietario, server </th>
- 	<th> precondizioni: la connessione è attiva; la pagina di conwaygui viene mostrata all'utente correttamente; il gioco non è ancora iniziato;  </th>
- 	<th> sequenza: </th>
- 	<th> postcondizioni: </th>
-  </table> 
- 
-  <table>
-  	<th> ID: CLEAR </th>
-  	<th> attori: proprietario, server </th>
-  	<th> precondizioni: la connessione è attiva; la pagina di conwaygui viene mostrata all'utente correttamente; il gioco non è ancora iniziato; </th>
-  	<th> sequenza: </th>
-  	<th> postcondizioni: </th>
-   </table>
-   
-   <table>
-   	<th> ID: EXIT </th>
-   	<th> attori: proprietario, server </th>
-   	<th> precondizioni: la connessione è attiva; la pagina di conwaygui viene mostrata all'utente correttamente; il gioco non è ancora iniziato;  </th>
-   	<th> sequenza: </th>
-   	<th> postcondizioni: </th>
-    </table>
+         <tr><th colspan="2">ID: START</th></tr>
+         <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+         <tr><td>Descrizione</td><td>L'utente preme il pulsante "Start" per avviare l'evoluzione della griglia secondo le regole di Conway's Game of Life.</td></tr>
+         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente; il gioco è fermo.</td></tr>
+         <tr><td>Postcondizioni</td><td>Il gioco è in esecuzione e la griglia si evolve automaticamente.</td></tr>
+     </table>
+     
+     <table>
+         <tr><th colspan="2">ID: STOP</th></tr>
+         <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+         <tr><td>Descrizione</td><td>L'utente preme il pulsante "Stop" per fermare l'evoluzione della griglia.</td></tr>
+         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente; il gioco è in esecuzione.</td></tr>
+         <tr><td>Postcondizioni</td><td>Il gioco si ferma e la griglia rimane nell'ultimo stato visualizzato.</td></tr>
+     </table>
+     
+     <table>
+         <tr><th colspan="2">ID: CLEAR</th></tr>
+         <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+         <tr><td>Descrizione</td><td>L'utente preme il pulsante "Clear" per cancellare la griglia e riportarla allo stato iniziale.</td></tr>
+         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente.</td></tr>
+         <tr><td>Postcondizioni</td><td>La griglia viene resettata e non ci sono più celle attive.</td></tr>
+     </table>
+     
+     <table>
+         <tr><th colspan="2">ID: EXIT</th></tr>
+         <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+         <tr><td>Descrizione</td><td>L'utente preme il pulsante "Exit" per chiudere l'applicazione o tornare alla pagina principale.</td></tr>
+         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente.</td></tr>
+         <tr><td>Postcondizioni</td><td>L'applicazione viene chiusa o l'utente viene reindirizzato alla home.</td></tr>
+     </table>
 <h2>Test plans</h2> 
 
 
