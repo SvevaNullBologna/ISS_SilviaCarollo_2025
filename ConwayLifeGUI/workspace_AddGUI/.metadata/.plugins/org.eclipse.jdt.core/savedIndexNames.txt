@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.jdt.core
+1933283932.index
+1865797976.index
+3413725848.index

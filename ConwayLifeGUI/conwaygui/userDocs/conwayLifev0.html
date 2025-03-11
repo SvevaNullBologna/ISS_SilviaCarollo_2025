@@ -400,6 +400,19 @@ Attori:  utente proprietario, utente spettatore, server, tempo.
 
 CASI D'USO :
 <table>
+	 <table>
+         <tr><th colspan="2">ID: VISUALIZZA </th></tr>
+         <tr><td>attori:</td><td>utente (proprietario o spettatore), Server</td></tr>
+	<tr><td>Precondizioni</td><td>La connessione è attiva; la GUI è stata avviata correttamente;</td></tr>
+         <tr><td>sequenza:</td><td>
+	L’utente apre l’applicazione.<br>
+La GUI carica e visualizza la griglia con lo stato iniziale delle celle.<br>
+Se l’automa è in pausa, la griglia rimane statica.<br>
+Se l’automa è in esecuzione, lo stato della griglia si aggiorna automaticamente ad ogni iterazione.<br>
+L’utente può osservare i cambiamenti della griglia in tempo reale.<br>
+</td></tr>
+     </table>
+
 	<th> ID: START </th>
 	<th> attori: proprietario, server </th>
 	<th> precondizioni:<br>
@@ -427,30 +440,40 @@ l'utente può visualizzare l'evoluzione delle celle. <br>
      <table>
          <tr><th colspan="2">ID: STOP</th></tr>
          <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+	<tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente; il gioco è in esecuzione.</td></tr>
          <tr><td>Descrizione</td><td>L'utente preme il pulsante "Stop" per fermare l'evoluzione della griglia.</td></tr>
-         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente; il gioco è in esecuzione.</td></tr>
          <tr><td>Postcondizioni</td><td>Il gioco si ferma e la griglia rimane nell'ultimo stato visualizzato.</td></tr>
      </table>
      
      <table>
          <tr><th colspan="2">ID: CLEAR</th></tr>
          <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+	<tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente.</td></tr>
          <tr><td>Descrizione</td><td>L'utente preme il pulsante "Clear" per cancellare la griglia e riportarla allo stato iniziale.</td></tr>
-         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente.</td></tr>
          <tr><td>Postcondizioni</td><td>La griglia viene resettata e non ci sono più celle attive.</td></tr>
      </table>
      
      <table>
          <tr><th colspan="2">ID: EXIT</th></tr>
          <tr><td>Attori</td><td>Proprietario, Server</td></tr>
+	<tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente.</td></tr>
          <tr><td>Descrizione</td><td>L'utente preme il pulsante "Exit" per chiudere l'applicazione o tornare alla pagina principale.</td></tr>
-         <tr><td>Precondizioni</td><td>La connessione è attiva; la pagina ConwayGUI è mostrata correttamente.</td></tr>
          <tr><td>Postcondizioni</td><td>L'applicazione viene chiusa o l'utente viene reindirizzato alla home.</td></tr>
      </table>
-<h2>Test plans</h2> 
-
 
 <h2>Project</h2> 
+<p> Per questo progetto è stato scelto di utilizzare un pattern architetturale di tipo MVC (Model-View-Controller). <br>
+Distinguiamo le componenti base del progetto in entities e controllers:<br>
+Le Entities sono concetti con identità distinta e stato persistente. <br>
+In questo progetto distinguiamo come entità le singole Celle, la Griglia e il gioco ConwayLife stesso(sopra definite). <br> 
+Sono state di conseguenza create delle classi per gestirne la logica: 
+- Cell: <br>
+- Grid: <br>
+- Life: <br>
+I controllers sono componenti che gestiscono il flusso dell'applicazione 
+ entities, i controllers <br>
+
+ </p>
 
 
 
