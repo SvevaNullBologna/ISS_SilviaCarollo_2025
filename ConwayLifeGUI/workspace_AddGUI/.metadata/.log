@@ -1,4 +1,4 @@
-!SESSION 2025-03-10 18:37:06.286 -----------------------------------------------
+!SESSION 2025-03-11 09:36:47.677 -----------------------------------------------
 eclipse.buildId=4.34.0.20241128-0756
 java.version=21.0.5
 java.vendor=Eclipse Adoptium
@@ -6,15 +6,20 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
 Framework arguments:  -product org.eclipse.epp.package.dsl.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
 
-!ENTRY ch.qos.logback.classic 1 0 2025-03-10 18:37:11.244
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:36:51.392
 !MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
 
-!ENTRY ch.qos.logback.classic 1 0 2025-03-10 18:37:13.254
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:36:53.249
 !MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
 
-!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-10 18:37:18.342
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 09:36:58.410
 !MESSAGE No search provider was registered. Tasks search is not available.
-!SESSION 2025-03-11 09:15:32.056 -----------------------------------------------
+
+!ENTRY org.eclipse.egit.core 4 0 2025-03-11 09:38:07.889
+!MESSAGE Connecting Git team provider failed. See log for details.
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2025-03-11 09:38:07.889
+!MESSAGE Error connecting project conwaygui_ADD_GUI, no Git repositories found
+!SESSION 2025-03-11 09:39:41.745 -----------------------------------------------
 eclipse.buildId=4.34.0.20241128-0756
 java.version=21.0.5
 java.vendor=Eclipse Adoptium
@@ -22,11 +27,75 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
 Framework arguments:  -product org.eclipse.epp.package.dsl.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
 
-!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:15:38.550
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:39:46.397
 !MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
 
-!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:15:40.777
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:39:48.596
 !MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
 
-!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 09:15:45.600
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 09:39:54.216
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-11 09:46:10.181 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:46:13.933
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:46:16.126
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 09:46:21.711
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-11 09:48:14.417 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:48:19.892
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:48:22.032
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 09:48:27.087
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-11 09:58:31.031 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:58:34.674
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 09:58:36.703
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 09:58:42.985
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-11 10:03:04.690 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 10:03:09.351
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 10:03:11.699
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 10:03:17.186
 !MESSAGE No search provider was registered. Tasks search is not available.
