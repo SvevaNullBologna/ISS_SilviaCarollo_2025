@@ -15,7 +15,7 @@ public class MqttPublisher {
 	private MqttClient client;
 	private String clientName = "asender";
 	private String topic      = "xxx";	
-	private String brokerAddr = "tcp://localhost:1883"; //"wss://test.mosquitto.org:8081"; 
+	private String brokerAddr = "tcp://130.136.113.239:1883"; //"wss://test.mosquitto.org:8081"; 
  	
 	public MqttPublisher() {
 	}

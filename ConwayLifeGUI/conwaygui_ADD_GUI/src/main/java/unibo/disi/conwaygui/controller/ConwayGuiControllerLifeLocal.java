@@ -33,6 +33,7 @@ public class ConwayGuiControllerLifeLocal {
 	public static LifeController lifeController;
 	private Life life;
 	private boolean started = false;
+	private String startOfLocalIp = "172.18";
 	
 	public ConwayGuiControllerLifeLocal() {
 		initLifeApplication();
@@ -129,8 +130,7 @@ public class ConwayGuiControllerLifeLocal {
 	}
 	
 	protected String getServerLocalIp() {
-		
-        try {
+		try {
             Enumeration<NetworkInterface> interfacce = NetworkInterface.getNetworkInterfaces();
             while (interfacce.hasMoreElements()) {
                 NetworkInterface interfaccia = interfacce.nextElement();
@@ -139,7 +139,7 @@ public class ConwayGuiControllerLifeLocal {
                     InetAddress indirizzo = indirizzi.nextElement();
                     if (!indirizzo.isLoopbackAddress()) { // Esclude l'indirizzo loopback (127.0.0.1)
                         //System.out.println(interfaccia.getDisplayName() + ": " + indirizzo.getHostAddress());                        
-                        if( indirizzo.getHostAddress().startsWith("192.168")) {
+                        if( indirizzo.getHostAddress().startsWith(startOfLocalIp)) {
                         	System.out.println("ConwayGuiControllerLifeLocal ==== " + indirizzo.getHostAddress());
                         	return indirizzo.getHostAddress();
                         }

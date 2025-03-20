@@ -155,3 +155,183 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 16; columnNumber: 2; Il co
 	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
 	at org.eclipse.jdt.internal.core.JavaProject.decodeClasspath(JavaProject.java:1256)
 	... 45 more
+!SESSION 2025-03-11 11:23:07.302 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 11:23:11.062
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 11:23:13.091
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 11:23:19.277
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-11 11:27:09.928 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 11:27:15.436
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-11 11:27:17.452
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-11 11:27:22.863
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-12 15:31:45.019 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 15:31:49.789
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 15:31:52.214
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-12 15:31:58.623
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-12 15:38:02.121 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 15:38:07.758
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 15:38:09.814
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-12 15:38:13.467
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-12 15:53:13.631 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 15:53:17.415
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 15:53:19.676
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-12 15:53:25.149
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-12 16:13:40.510 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 16:13:44.011
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 16:13:45.456
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-12 16:13:50.032
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-12 16:18:34.808 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 16:18:38.484
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-12 16:18:40.221
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-12 16:18:46.031
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-13 14:04:25.990 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 14:04:30.318
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 14:04:32.144
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+!SESSION 2025-03-13 14:05:45.121 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 14:05:47.345
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 14:05:48.673
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+!SESSION 2025-03-13 14:27:01.425 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 14:27:04.473
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 14:27:06.064
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2025-03-13 14:33:37.169
+!MESSAGE No search provider was registered. Tasks search is not available.
+!SESSION 2025-03-13 15:10:06.008 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 15:10:08.255
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-13 15:10:09.667
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+!SESSION 2025-03-19 17:43:16.310 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=it_IT
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-19 17:43:22.273
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-03-19 17:43:24.593
+!MESSAGE Logback config file: C:\Users\Sveva\CartelleDesktop\UNIPA\ISS\ISS_SilviaCarollo_2025\ConwayLifeGUI\workspace_AddGUI\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml

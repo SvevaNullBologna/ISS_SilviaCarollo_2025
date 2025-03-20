@@ -4,11 +4,9 @@ services:
     image: docker.io/natbodocker/conwayguilifelocal:2.0
 ##    image: conwayguilifelocal:1.0
     ports:
-      - "8110:7110"
-# 7110:7110
+      - "7110:7110"
     environment:
-      - HOST_IP=10.201.37.145
-# - HOST_IP = 192.168.1.132 labdisi
+      - HOST_IP=172.18.48.1
 #      - HOST_IP=192.168.1.9
 #      - HOST_IP=130.136.113.239
 #    network_mode: "host"

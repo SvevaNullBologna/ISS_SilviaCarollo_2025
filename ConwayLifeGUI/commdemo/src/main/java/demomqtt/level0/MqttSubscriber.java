@@ -15,8 +15,8 @@ import unibo.basicomm23.utils.CommUtils;
  */
 public class MqttSubscriber {
 	
-    String brokerUrl = "tcp://localhost:1883"; // URL del broker Mosquitto
-    String clientId  = "asubscriber"; // ID univoco per il client
+    String brokerUrl = "tcp://130.136.113.239:1883"; // URL del broker Mosquitto
+    String clientId  = "asubscriber0001171381"; // ID univoco per il client
     String topic     = "xxx"; // Topic da sottoscrivere
 	
 
