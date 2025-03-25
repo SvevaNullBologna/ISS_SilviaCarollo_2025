@@ -1,3 +1,5 @@
+breadcrumb.org.eclipse.jdt.ui.JavaPerspective=true
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="unibo.basicomm23.interfaces.Interaction2023"><rhs name\="unibo.basicomm23.mqtt.MqttInteraction"/></lhs><lhs name\="unibo.basicomm23.mqtt.MqttInteraction"><rhs name\="unibo.basicomm23.mqtt.MqttInteraction"/></lhs></history>
 content_assist_number_of_computers=13
 eclipse.preferences.version=1
 org.eclipse.jdt.ui.formatterprofiles.version=23
