@@ -1,0 +1,114 @@
+## **1. Introduzione**
+
+Questo progetto realizza una simulazione del *Conway's Game of Life* in cui **ogni cella è un attore autonomo**. Le celle comunicano tra loro seguendo il modello ad attori, con **MQTT come infrastruttura di scambio eventi**, e sono coordinate da un **direttore d’orchestra** che scandisce il tempo della simulazione (i turni). Lo scopo è costruire un sistema distribuito, osservabile e modulare, in cui le entità siano vive e dinamiche.
+
+---
+
+## **2. Requisiti**
+
+### **2.1 Requisiti funzionali**
+- Ogni cella deve rappresentare un attore con uno stato (viva o morta).
+- Gli attori devono conoscere i propri vicini (fino a 8).
+- Il sistema deve evolversi a step sincronizzati guidati da un direttore.
+- Le celle devono essere in grado di **inviare e ricevere informazioni** dai vicini.
+- La GUI deve rappresentare lo stato della griglia in tempo reale.
+- Gli attori devono comunicare tramite **emit, publish e updateResource**.
+- Possibilità di inizializzazione da file o configurazione esterna (.yaml).
+
+### **2.2 Requisiti non funzionali**
+- Modularità e scalabilità (numero di celle arbitrario).
+- Comunicazione asincrona tra attori.
+- Facilità di estensione e mantenibilità.
+- Supporto a test automatizzati.
+
+---
+
+## **3. Analisi dei requisiti**
+
+Ogni **attore cella** sarà un'entità vivente con:
+- Uno **stato interno** (viva/morta).
+- Una **tabella dei vicini**, aggiornata inizialmente dal direttore o tramite configurazione.
+- Una **logica di transizione** (basata sulle regole di Conway) attivata da un comando del direttore.
+
+Il sistema si basa su:
+- **emit** per notifiche locali.
+- **publish** per messaggi su MQTT (newsletter/argomenti).
+- **updateResource** per notifiche osservabili da GUI o altri attori.
+
+L'attore riceve messaggi nella propria **coda FIFO**. Se il messaggio non è per lui, viene messo in una coda temporanea.
+
+---
+
+## **4. Analisi del problema**
+
+Il problema consiste nella sincronizzazione di attori autonomi in una rete di comunicazione:
+- Ogni attore rappresenta una **FSM (automa a stati finiti)**.
+- Deve sapere **quando e a chi** inviare informazioni.
+- Deve aspettare il proprio turno, guidato dal direttore.
+- Deve aggiornarsi **solo dopo aver ricevuto** tutte le informazioni dai vicini.
+
+Sfida principale:
+- **Gestione del tempo**: sincronizzare lo step senza causare deadlock o race condition.
+
+---
+
+## **5. Progetto**
+
+### **5.1 Architettura**
+- Ogni cella = file `.qak` (attore).
+- Il direttore = attore separato, invia comando di inizio turno e fine turno.
+- La GUI = attore osservatore, riceve `updateResource`.
+
+### **5.2 Automazione**
+- Ogni cella si comporta come **automa di Moore**:
+  - Stato iniziale: attesa del turno.
+  - Transizione: ricezione messaggi dai vicini.
+  - Azione: calcolo del prossimo stato e notifica alla GUI.
+
+### **5.3 Linguaggi e tecnologie**
+- QAK (per gli attori)
+- Kotlin co-routines (thread leggeri)
+- MQTT (Msquitto)
+- YAML per configurazione
+- Java per il modulo esterno opzionale (es. orchestratore alternativo)
+
+---
+
+## **6. Piani di testing**
+
+### **6.1 Testing unitario**
+- Ogni cella viene testata isolatamente:
+  - Stato iniziale corretto
+  - Transizione con input predefiniti
+
+### **6.2 Testing di integrazione**
+- Comunicazione tra 2–3 celle vicine.
+- Verifica che gli aggiornamenti siano corretti.
+
+### **6.3 Testing del sistema**
+- Griglia completa (es. 5x5).
+- Verifica del comportamento dopo 5 step.
+- GUI riceve aggiornamenti corretti.
+
+### **6.4 Testing di carico**
+- Simulazione con molte celle (es. 50x50).
+- Verifica che MQTT e gli attori reggano il carico.
+
+---
+
+## **7. Deployment**
+
+- Caricamento degli attori con `.qak`.
+- Configurazione YAML per attori, MQTT e GUI.
+- Esecuzione orchestrata tramite script (es. `run.sh`).
+- Possibile deploy in locale (con `localhost`) o distribuito (più nodi MQTT).
+
+---
+
+## **8. Maintenance**
+
+- Modifica facile delle regole (es. Life-like variants) cambiando lo stato dell’automa.
+- Possibilità di sostituire l’orchestratore.
+- Logging eventi MQTT per debug.
+- GUI osservabile come *resource client*.
+

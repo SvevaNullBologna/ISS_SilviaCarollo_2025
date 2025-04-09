@@ -6,10 +6,10 @@ services:
     ports:
       - "7110:7110"
     environment:
-      - MQTTBROKER_URL=tcp://192.168.1.132:1883		
+      - MQTTBROKER_URL=tcp:192.168.135.220//:1883
 #      - HOST_IP=conwaygui		
 #       - HOST_IP=192.168.1.132
-      - HOST_IP=192.168.1.132
+      - HOST_IP=192.168.135.220
 #      - HOST_IP=130.136.113.239
 #    network_mode: "host"
     networks:
