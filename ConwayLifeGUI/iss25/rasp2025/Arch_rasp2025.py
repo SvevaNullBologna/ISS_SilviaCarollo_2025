@@ -25,23 +25,7 @@ with Diagram('rasp2025Arch', show=False, outformat='png', graph_attr=graphattr) 
   with Cluster('env'):
      sys = Custom('','./qakicons/system.png')
 ### see https://renenyffenegger.ch/notes/tools/Graphviz/attributes/label/HTML-like/index
-     with Cluster('ctxrasp', graph_attr=nodeattr):
-          raspactor=Custom('raspactor','./qakicons/symActorWithobjSmall.png')
-          ledobserver=Custom('ledobserver','./qakicons/symActorWithobjSmall.png')
-          ledperceiver=Custom('ledperceiver','./qakicons/symActorWithobjSmall.png')
-          ledreactor=Custom('ledreactor','./qakicons/symActorWithobjSmall.png')
-     raspactor >> Edge( label='ledchangedevent', **eventedgeattr, decorate='true', fontcolor='red') >> sys
-     sys >> Edge( label='ledchangedevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledobserver
-     sys >> Edge( label='ledstatelocalevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledobserver
-     sys >> Edge( label='ledvaluestream', **evattr, decorate='true', fontcolor='darkgreen') >> ledobserver
-     sys >> Edge( label='ledinfoevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledobserver
-     sys >> Edge( label='ledchangedevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledperceiver
-     sys >> Edge( label='ledstatelocalevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledperceiver
-     sys >> Edge( label='ledvaluestream', **evattr, decorate='true', fontcolor='darkgreen') >> ledperceiver
-     sys >> Edge( label='ledinfoevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledperceiver
-     raspactor >> Edge( label='ledvaluestream', **eventedgeattr, decorate='true', fontcolor='red') >> ledreactor
-     sys >> Edge( label='ledchangedevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledreactor
-     sys >> Edge( label='ledstatelocalevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledreactor
-     sys >> Edge( label='ledinfoevent', **evattr, decorate='true', fontcolor='darkgreen') >> ledreactor
-     raspactor >> Edge(color='blue', style='solid',  decorate='true', label='<coapinfo &nbsp; >',  fontcolor='blue') >> ledperceiver
+     with Cluster('ctxsonar', graph_attr=nodeattr):
+          sonardevice=Custom('sonardevice','./qakicons/symActorWithobjSmall.png')
+     sys >> Edge( label='sonardata', **evattr, decorate='true', fontcolor='darkgreen') >> sonardevice
 diag

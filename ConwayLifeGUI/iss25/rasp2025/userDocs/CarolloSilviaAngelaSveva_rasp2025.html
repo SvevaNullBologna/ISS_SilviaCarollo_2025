@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./commons/resources/styles/templateISS.css">
+    <link rel="stylesheet" type="text/css" href="./commons/resources/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="./commons/resources/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="./commons/resources/styles/table.css">
+    <link rel="stylesheet" type="text/css" href="./commons/resources/styles/code.css">
+    <style type="text/css">
+        body {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        P {
+            font-family: Tahoma;
+            font-size: 10pt;
+        }
+        h1, h2, h3 {
+            color: #242424;
+            clear: left;
+            font: 100% Tahoma, Helvetica, Arial, sans-serif;
+            margin-bottom: 0.5em;
+            padding-top: 0.5em;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        div.body {
+            font-size: 18px;
+        }
+        div.remark {
+            background-color: #E3F2FD;
+            border: 1.5px solid #d5f2ed;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 25px;
+        }
+        div.alert {
+            background-color: #f9613b;
+            border: 1.5px solid #d5f2ed;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top">
+    <h1>LABORATORIO DI INGEGNERIA DEI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>
+
+<div class="body"> 
+    <h2>Introduction</h2>
+    <div class="remark">
+        L'obiettivo del progetto è quello di sviluppare un actor in grado di gestire un Sonar connesso a un RaspberryPi, rendendo disponibile a componenti interessati (locali o remoti)
+        la distanza rilevata. Se la distanza è inferiore a un valore prefissato LIMIT deve accendere il Led.
+</div>
+
+    <h2>Problem analysis</h2>
+	<h2> Materiale in possesso e modifiche effettuate </h2>
+	<div class="remark">
+	Possediamo il codice di basso livello sonar.py che si occupa di attivare il sonar fisico e scrivere sul dispositivo standard di output, a intervalli temporali fissi, i valori della distanza corrente rilevata.</br>
+	Per poter scindere al meglio le funzionalità, ho preferito creare i due file sonarStart.py e sonarStop.py (/rasp2025/resources/python/).</br>
+	Possediamo anche i codici di basso livello ledPython25On.py e ledPython25Off.py, ma per svolgere meglio questo progetto, ho preferito avere un singolo file LedPython25.py perché il led fa soltanto da sentinella, quindi possiamo farlo spegnere automaticamente.</br>
+	Aggiungiamo un codice python 'handleDistance.py' che si occupa della gestione della distanza e di accendere il led quando serve. </br>
+<br>
+	Sono inoltre già state fornite le classi: 
+	<ul>
+		<li> CallerRaspactorCoap.java : si connette a un attore QAK tramite CoAP, prepara i messaggi di accensione e spegnimento e stabilisce il contesto in cui mandare i messaggi.
+		</li>
+		<li> CallerRaspactorMqtt.java : si occupa della connessione Mqtt con un attore QAK.
+			Prepara i messaggi di accensione e spegnimento, stabilisce la connessione con il broker MQTT (Mosquitto) e stabilisce il topic su cui si ricevono i messaggi. 
+		</li>
+		<li> CallerRaspactorTcp.java : si occupa della gestione della connessione TCP.
+		</li>
+	</ul>
+		
+	<h2> Problemi da svolgere </h2>
+	<div class="remark">
+	Il codice sonar.py non riesce a mandare informazioni in rete, nè di ricevere comandi di sonarstart/sonarstop, inoltre ogni valore emesso deve avere un valore intero compreso tra 0 e 150. <br>
+	</div>
+
+	<h2>Requirements</h2> 
+    <div class="remark">
+        L'attore che gestisce il sonar deve svolgere il ruolo di broker ponendosi in mezzo al sonar e ai componenti interessati alle misurazioni di quest'ultimo.
+        <br><br>
+        L'attore dovrà continuamente recuperare le misurazioni dal sonar e inviarle alle altre entità del sistema. Per far questo è necessario
+        che l'attore che gestisce il sonar conosca i nomi di tutti gli altri attori del sistema o, equivalentemente, abbia un qualche riferimento verso
+        questi ultimi. Per questo motivo MQTT si presta bene come protocollo di comunicazione tra le entità in gioco (mi disaccoppio da tutti i possibili subscriber,
+        ho bisogno di conoscere solo il broker). 
+        <br><br>
+		In QAK gli attori possono comunicare tra loro, quindi,quello che gestisce il sonar deve emettere un evento riguardante la misurazione e tutti gli altri attori in ascolto lo potranno ricevere.
+        <br><br>
+        Le misurazioni del sonar vengono prodotte da un programma Python, sonarstart.py. Il programma è in linguaggio Python per poter usufruire delle librerie che supportano in maniera
+        agevole la gestione dei pin di GPIO. 
+		Soluzione scelta :
+        <ul>
+            <li>
+                Faremo pubblicare al programma Python le misurazioni che recupera dal sonar su una topic MQTT. L'attore che gestisce il sonar si iscriverà a questa topic
+                e ripubblicherà le misurazioni che gli arrivano come eventi per gli altri attori del sistema.
+            </li>
+        </ul>
+    </div>
+
+
+    <h2>Solution Overview</h2>
+    <div class="remark">
+        Il sistema sarà composto da vari attori, tra cui uno che si occuperà di raccogliere i dati dal sonar e di gestire la logica per l'accensione del LED.
+        L'actor che gestisce il sonar seguirà questi passi:
+        <ol>
+            <li><b>Raccolta Dati:</b> Il programma Python sul Raspberry Pi si interfaccia con il sonar per raccogliere periodicamente le misurazioni di distanza.</li>
+            <li><b>Comunicazione MQTT:</b> Il programma Python pubblica le misurazioni su un topic MQTT. L'actor che gestisce il sonar si iscrive a questo topic per ricevere le misurazioni.</li>
+            <li><b>Verifica Distanza:</b> L'actor gestore del sonar verifica se la distanza è inferiore al valore limite (LIMIT) e, se necessario, invia un comando per accendere il LED.</li>
+            <li><b>Gestione LED:</b> Il Raspberry Pi, tramite il programma Python, accende il LED se la distanza è inferiore a LIMIT, altrimenti lo mantiene spento.</li>
+        </ol>
+    </div>
+
+    <h2>Next Steps</h2>
+    <div class="remark">
+        I passi successivi includono la scrittura del codice per l'attore QAK che si occuperà di gestire la comunicazione MQTT, l'implementazione del codice Python per
+        interagire con il sonar e il controllo del LED, e il test del sistema completo.
+    </div>
+</div>
+
+</body>
+</html>

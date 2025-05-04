@@ -24,7 +24,7 @@ public class CallerRaspactorCoap  {
         int port              = 8080;
         ProtocolType protocol = ProtocolType.coap;
 
-        Interaction conn = ConnectionFactory.createClientSupport(protocol, hostAddr+":"+port, "ctxrasp/raspactor");
+        Interaction conn = ConnectionFactory.createClientSupport(protocol, hostAddr+":"+port, "ctxsonar/raspactor");
         
          
         try {

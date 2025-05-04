@@ -1,0 +1,49 @@
+System /*-trace*/ rasp2025
+mqttBroker "192.168.137.1" : 1883 eventTopic "sonar/events"
+
+Dispatch sonarstart  : sonarstart(X)       
+Dispatch sonarstop : sonarstop(X)    
+
+Event sonardata : distance(D)
+
+Context ctxsonar ip [host="localhost" port=8080]      
+
+QActor sonardevice context ctxsonar {
+    State s0 initial {
+        delay 2000
+        println("sonardevice ready")
+    }
+    Goto waitCmd
+    
+    State waitCmd {
+    	println("sonardevice waits...")
+    }
+
+    Transition t0
+    	whenMsg sonarstart -> turnSonarOn
+    	whenMsg sonarstop -> turnSonarOff 
+    	whenEvent sonardata -> handleDistance 
+
+    State turnSonarOn {
+        println("sonar active: activating sonar...")
+        [# Runtime.getRuntime().exec("python sonarStart.py") #]
+        println("sonardevice on")
+    }Goto waitCmd
+    
+
+    State turnSonarOff {
+        println("sonardevice inactive: stopping sonar...")
+    	[# Runtime.getRuntime().exec("python sonarStop.py") #]    
+    	println("sonardevice off")
+    }Goto waitCmd
+    
+    State handleDistance{
+    	[#
+			val D = payloadArg(0).toDouble()
+        	val cmd = "python handleDistance.py ${D}"
+        	println("Calling from observer: ${cmd}")
+        	machineExec(cmd)
+		#]
+    }Goto waitCmd
+
+}

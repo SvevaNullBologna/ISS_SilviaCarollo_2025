@@ -10,5 +10,5 @@ relazione fine fase 1 : https://github.com/SvevaNullBologna/ISS_SilviaCarollo_20
 FASE 2:
 dai microservizi agli attori.
 Progetti svolti presenti nella repository: 
-rasp2025ledalone
-SonarLed2025 
+rasp2025ledalone : https://github.com/SvevaNullBologna/ISS_SilviaCarollo_2025/tree/main/ConwayLifeGUI/rasp2025
+SonarLed2025 : https://github.com/SvevaNullBologna/ISS_SilviaCarollo_2025/tree/main/ConwayLifeGUI/iss25/rasp2025
