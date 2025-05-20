@@ -16,7 +16,7 @@ GPIO.output(TRIG, False)   #TRIG parte LOW
 time.sleep(2)
 
 while True:
-   GPIO.output(TRIG, True)    #invia impulsoTRIG
+   GPIO.output(TRIG, True)    #invia impulsoTRIGvo
    time.sleep(0.00001)
    GPIO.output(TRIG, False)
 
@@ -33,7 +33,7 @@ while True:
    distance = round(distance, 1)
    #print ('Distance:',distance,'cm')
    #print ( distance, flush=True )
-   print ( distance  )
+   print(distance)
    sys.stdout.flush()
    time.sleep(0.25)
 

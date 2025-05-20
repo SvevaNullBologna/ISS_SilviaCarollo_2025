@@ -27,5 +27,7 @@ with Diagram('rasp2025Arch', show=False, outformat='png', graph_attr=graphattr) 
 ### see https://renenyffenegger.ch/notes/tools/Graphviz/attributes/label/HTML-like/index
      with Cluster('ctxsonar', graph_attr=nodeattr):
           sonardevice=Custom('sonardevice','./qakicons/symActorWithobjSmall.png')
-     sys >> Edge( label='sonardata', **evattr, decorate='true', fontcolor='darkgreen') >> sonardevice
+          sonarobserver=Custom('sonarobserver','./qakicons/symActorWithobjSmall.png')
+          sonarreactor=Custom('sonarreactor','./qakicons/symActorWithobjSmall.png')
+     sys >> Edge( label='sonardata', **evattr, decorate='true', fontcolor='darkgreen') >> sonarobserver
 diag

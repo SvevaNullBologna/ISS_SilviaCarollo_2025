@@ -17,6 +17,4 @@ GPIO.setup(25,GPIO.OUT)
 main activity
 ----------------------------------
 '''
-GPIO.output(25,GPIO.HIGH)
-time.sleep(2)
 GPIO.output(25,GPIO.LOW)

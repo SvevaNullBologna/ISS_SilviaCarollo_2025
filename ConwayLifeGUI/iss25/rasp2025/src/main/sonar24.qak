@@ -4,46 +4,109 @@ mqttBroker "192.168.137.1" : 1883 eventTopic "sonar/events"
 Dispatch sonarstart  : sonarstart(X)       
 Dispatch sonarstop : sonarstop(X)    
 
+Dispatch ledon : ledon(X)
+Dispatch ledoff : ledoff(X)
+
 Event sonardata : distance(D)
 
 Context ctxsonar ip [host="localhost" port=8080]      
 
 QActor sonardevice context ctxsonar {
+	[#
+		var process: Process? = null	
+	#]
     State s0 initial {
         delay 2000
-        println("sonardevice ready")
+        println("sonardevice ready") color magenta
     }
-    Goto waitCmd
+    Goto turnSonarOn
     
-    State waitCmd {
-    	println("sonardevice waits...")
-    }
 
+    State turnSonarOn {
+        println("sonar active: activating sonar...") color magenta
+        [# 
+        	process = Runtime.getRuntime().exec("python sonarStart.py")
+        #]
+        println("sonardevice on")
+        delay 2000
+    }Goto working
+    
+	State working {
+    	println("sonardevice waits...") color magenta
+    	[#
+    		val reader = java.io.BufferedReader(java.io.InputStreamReader(process.inputStream))
+        	val distance = reader.readLine().toDouble()
+        	emit sonardata : distance(distance) 	
+    	#]
+    }
+    
     Transition t0
     	whenMsg sonarstart -> turnSonarOn
     	whenMsg sonarstop -> turnSonarOff 
-    	whenEvent sonardata -> handleDistance 
-
-    State turnSonarOn {
-        println("sonar active: activating sonar...")
-        [# Runtime.getRuntime().exec("python sonarStart.py") #]
-        println("sonardevice on")
-    }Goto waitCmd
-    
-
+    	
     State turnSonarOff {
-        println("sonardevice inactive: stopping sonar...")
+        println("sonardevice inactive: stopping sonar...") color magenta
     	[# Runtime.getRuntime().exec("python sonarStop.py") #]    
-    	println("sonardevice off")
-    }Goto waitCmd
+    	println("sonardevice off") color magenta
+    	delay 2000
+    }Goto working
     
-    State handleDistance{
+    
+
+}
+
+
+QActor sonarobserver context ctxsonar{
+	State s0 initial{
+		println("sonarobserver started") color magenta
+	}Goto work
+	
+	State work{
+		
+	}
+	
+	Transition t0
+		whenEvent sonardata -> handleDistance 
+		
+	State handleDistance{
     	[#
 			val D = payloadArg(0).toDouble()
         	val cmd = "python handleDistance.py ${D}"
-        	println("Calling from observer: ${cmd}")
-        	machineExec(cmd)
+        	val min = 0.0
+        	val max = 150.0
+        	if(D < min || D > max){
+        		println("Distance out of range: sending ledon")
+        		emit("ledon", "ledon(on)")
+        	}
+        	else{
+        		println("Distance in range: sending ledoff")
+        		emit("ledoff", "ledoff(off)")
+        	}
 		#]
-    }Goto waitCmd
+    }Goto work
+}
 
+QActor sonarreactor context ctxsonar{
+	State s0 initial{
+		println("sonarreactor started") color magenta
+	}Goto work
+	
+	State work{
+		
+	}
+	
+	Transition t0
+		whenMsg ledon -> turnOn
+		whenMsg ledoff -> turnOff
+	
+	State turnOn{
+		println("LED ON: distanza fuori range") color magenta
+        [# Runtime.getRuntime().exec("python ledOn.py") #]
+	}Goto work
+	
+	State turnOff{
+		println("LED OFF: distanza ok") color magenta
+		[# Runtime.getRuntime().exec("python ledOff.py") #]
+	}
+	
 }

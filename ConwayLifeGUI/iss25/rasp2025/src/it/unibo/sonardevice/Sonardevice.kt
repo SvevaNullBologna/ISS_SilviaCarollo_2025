@@ -29,21 +29,41 @@ class Sonardevice ( name: String, scope: CoroutineScope, isconfined: Boolean=fal
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
 		//val interruptedStateTransitions = mutableListOf<Transition>()
 		//IF actor.withobj !== null val actor.withobj.name» = actor.withobj.method»ENDIF
+		
+				var process: Process? = null	
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
 						delay(2000) 
-						CommUtils.outblack("sonardevice ready")
+						CommUtils.outmagenta("sonardevice ready")
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="waitCmd", cond=doswitch() )
+					 transition( edgeName="goto",targetState="turnSonarOn", cond=doswitch() )
 				}	 
-				state("waitCmd") { //this:State
+				state("turnSonarOn") { //this:State
 					action { //it:State
-						CommUtils.outblack("sonardevice waits...")
+						CommUtils.outmagenta("sonar active: activating sonar...")
+						 
+						        	process = Runtime.getRuntime().exec("python sonarStart.py")
+						CommUtils.outblack("sonardevice on")
+						delay(2000) 
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+					}	 	 
+					 transition( edgeName="goto",targetState="working", cond=doswitch() )
+				}	 
+				state("working") { //this:State
+					action { //it:State
+						CommUtils.outmagenta("sonardevice waits...")
+						
+						    		val reader = java.io.BufferedReader(java.io.InputStreamReader(process.inputStream))
+						        	val distance = reader.readLine().toDouble()
+						        	emit sonardata : distance(distance) 	
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
@@ -51,45 +71,19 @@ class Sonardevice ( name: String, scope: CoroutineScope, isconfined: Boolean=fal
 					}	 	 
 					 transition(edgeName="t00",targetState="turnSonarOn",cond=whenDispatch("sonarstart"))
 					transition(edgeName="t01",targetState="turnSonarOff",cond=whenDispatch("sonarstop"))
-					transition(edgeName="t02",targetState="handleDistance",cond=whenEvent("sonardata"))
-				}	 
-				state("turnSonarOn") { //this:State
-					action { //it:State
-						CommUtils.outblack("sonar active: activating sonar...")
-						 Runtime.getRuntime().exec("python sonarStart.py")  
-						CommUtils.outblack("sonardevice on")
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="waitCmd", cond=doswitch() )
 				}	 
 				state("turnSonarOff") { //this:State
 					action { //it:State
-						CommUtils.outblack("sonardevice inactive: stopping sonar...")
+						CommUtils.outmagenta("sonardevice inactive: stopping sonar...")
 						 Runtime.getRuntime().exec("python sonarStop.py")  
-						CommUtils.outblack("sonardevice off")
+						CommUtils.outmagenta("sonardevice off")
+						delay(2000) 
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="waitCmd", cond=doswitch() )
-				}	 
-				state("handleDistance") { //this:State
-					action { //it:State
-						
-									val D = payloadArg(0).toDouble()
-						        	val cmd = "python handleDistance.py ${D}"
-						        	println("Calling from observer: ${cmd}")
-						        	machineExec(cmd)
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="waitCmd", cond=doswitch() )
+					 transition( edgeName="goto",targetState="working", cond=doswitch() )
 				}	 
 			}
 		}
