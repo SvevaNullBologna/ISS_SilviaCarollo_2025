@@ -35,7 +35,7 @@ class Vrbasicmoves ( name: String, scope: CoroutineScope, isconfined: Boolean=fa
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
-						CommUtils.outblue("$name STARTS")
+						CommUtils.outblue("$name ")
 						 vr.setTrace( true )  
 						 vr.halt()  
 						//genTimer( actor, state )
@@ -43,76 +43,18 @@ class Vrbasicmoves ( name: String, scope: CoroutineScope, isconfined: Boolean=fa
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="work", cond=doswitch() )
+					 transition( edgeName="goto",targetState="walkperimeter", cond=doswitch() )
 				}	 
-				state("work") { //this:State
+				state("walkperimeter") { //this:State
 					action { //it:State
-						CommUtils.outblue("$name turnLeft")
-						 vr.turnLeft()  
-						CommUtils.outblue("$name stap(2500)")
-						 vr.step(2500)   
+						 while(vr.step(350));
+						 			   vr.turnLeft()  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="perceive", cond=doswitch() )
-				}	 
-				state("perceive") { //this:State
-					action { //it:State
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition(edgeName="t00",targetState="handleVrinfoEvent",cond=whenEvent("vrinfo"))
-					transition(edgeName="t01",targetState="handleVrinfoMsg",cond=whenDispatch("vrinfo"))
-					transition(edgeName="t02",targetState="handleobstacle",cond=whenEvent("obstacle"))
-					transition(edgeName="t03",targetState="handleSonardata",cond=whenEvent("sonardata"))
-				}	 
-				state("handleVrinfoEvent") { //this:State
-					action { //it:State
-						CommUtils.outblue("$name in ${currentState.stateName} | $currentMsg | ${Thread.currentThread().getName()} n=${Thread.activeCount()}")
-						 	   
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="perceive", cond=doswitch() )
-				}	 
-				state("handleVrinfoMsg") { //this:State
-					action { //it:State
-						CommUtils.outblue("$name in ${currentState.stateName} | $currentMsg | ${Thread.currentThread().getName()} n=${Thread.activeCount()}")
-						 	   
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="perceive", cond=doswitch() )
-				}	 
-				state("handleobstacle") { //this:State
-					action { //it:State
-						CommUtils.outblue("$name in ${currentState.stateName} | $currentMsg | ${Thread.currentThread().getName()} n=${Thread.activeCount()}")
-						 	   
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="perceive", cond=doswitch() )
-				}	 
-				state("handleSonardata") { //this:State
-					action { //it:State
-						CommUtils.outblue("$name in ${currentState.stateName} | $currentMsg | ${Thread.currentThread().getName()} n=${Thread.activeCount()}")
-						 	   
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="perceive", cond=doswitch() )
+					 transition( edgeName="goto",targetState="walkperimeter", cond=doswitch() )
 				}	 
 			}
 		}

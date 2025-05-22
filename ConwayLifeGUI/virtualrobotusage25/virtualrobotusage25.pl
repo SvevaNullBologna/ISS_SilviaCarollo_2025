@@ -8,8 +8,6 @@ dispatch( vrinfo, vrinfo(A,B) ). %inviato dal supportp
 event( vrinfo, vrinfo(A,B) ). %emesso dal supportp
 event( obstacle, obstacle(X) ). %emesso dal supportp
 %====================================================================================
-context(ctxvrusage25, "localhost",  "TCP", "8120").
+context(ctxvrusage25, "localhost",  "TCP", "8080").
  qactor( vrbasicmoves, ctxvrusage25, "it.unibo.vrbasicmoves.Vrbasicmoves").
  static(vrbasicmoves).
-  qactor( perceiver, ctxvrusage25, "it.unibo.perceiver.Perceiver").
- static(perceiver).

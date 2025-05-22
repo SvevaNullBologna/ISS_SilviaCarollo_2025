@@ -27,11 +27,4 @@ with Diagram('virtualrobotusage25Arch', show=False, outformat='png', graph_attr=
 ### see https://renenyffenegger.ch/notes/tools/Graphviz/attributes/label/HTML-like/index
      with Cluster('ctxvrusage25', graph_attr=nodeattr):
           vrbasicmoves=Custom('vrbasicmoves','./qakicons/symActorWithobjSmall.png')
-          perceiver=Custom('perceiver','./qakicons/symActorWithobjSmall.png')
-     sys >> Edge( label='vrinfo', **evattr, decorate='true', fontcolor='darkgreen') >> vrbasicmoves
-     sys >> Edge( label='obstacle', **evattr, decorate='true', fontcolor='darkgreen') >> vrbasicmoves
-     sys >> Edge( label='sonardata', **evattr, decorate='true', fontcolor='darkgreen') >> vrbasicmoves
-     sys >> Edge( label='vrinfo', **evattr, decorate='true', fontcolor='darkgreen') >> perceiver
-     sys >> Edge( label='obstacle', **evattr, decorate='true', fontcolor='darkgreen') >> perceiver
-     sys >> Edge( label='sonardata', **evattr, decorate='true', fontcolor='darkgreen') >> perceiver
 diag
