@@ -47,8 +47,23 @@ class Vrbasicmoves ( name: String, scope: CoroutineScope, isconfined: Boolean=fa
 				}	 
 				state("walkperimeter") { //this:State
 					action { //it:State
-						 while(vr.step(350));
-						 			   vr.turnLeft()  
+						if( (vr.step(350)) 
+						 ){forward("stepdone", "stepdone(true)" ,name ) 
+						}
+						else
+						 {forward("stepfailed", "stepfailed(false)" ,name ) 
+						 }
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+					}	 	 
+					 transition(edgeName="t00",targetState="handlecollision",cond=whenDispatch("stepfailed"))
+					transition(edgeName="t01",targetState="walkperimeter",cond=whenDispatch("stepdone"))
+				}	 
+				state("handlecollision") { //this:State
+					action { //it:State
+						vr.turnLeft() 
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002

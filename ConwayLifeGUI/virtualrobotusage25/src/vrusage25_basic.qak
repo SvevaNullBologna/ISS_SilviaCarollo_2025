@@ -9,6 +9,8 @@ System virtualrobotusage25
 * 
 * Porre vr.setTrace( true ) per visualizzare le
 * informazioni emesse dal supporto
+* 
+* move :  payload : payload(M)
 * ------------------------------------------------------------------------
 
  */
@@ -35,9 +37,23 @@ Context ctxvrusage25  ip [host="localhost"  port=8080   ]
 
  	
  	State walkperimeter {
- 		[# while(vr.step(350));
- 			   vr.turnLeft() #]
- 	}Goto walkperimeter
+ 		if[#(vr.step(350))#]{
+ 		autodispatch stepdone : stepdone(true)
+ 		}
+ 		else{ 
+ 		autodispatch stepfailed : stepfailed(false)
  	
+ 		}
+ 		
+ 	}
+ 	
+ 	Transition t0 
+ 		whenMsg stepfailed -> handlecollision
+ 		whenMsg stepdone -> walkperimeter
+ 	
+ 	
+ 	State handlecollision {
+ 		[#vr.turnLeft()#]
+ 	}Goto walkperimeter
  	
  }
