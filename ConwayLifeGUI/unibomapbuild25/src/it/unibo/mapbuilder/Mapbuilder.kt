@@ -31,11 +31,10 @@ class Mapbuilder ( name: String, scope: CoroutineScope, isconfined: Boolean=fals
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
 		//val interruptedStateTransitions = mutableListOf<Transition>()
 		//IF actor.withobj !== null val actor.withobj.name» = actor.withobj.method»ENDIF
-		val vr = VrobotHLMoves24.create("localhost",myself)
 		
 		 
 		
-		var stepok      = 0   
+		var stepok      = 0
 		var CurPlan    = ""
 		var CurMove    = ""
 		var Athome     = false 
@@ -43,217 +42,177 @@ class Mapbuilder ( name: String, scope: CoroutineScope, isconfined: Boolean=fals
 		
 		var Step       = 340
 		val mapper     = RobotMapper()
-		val MapName    = "map25new"
-		val MapAllName = "map25complete_x"
-		  
-		lateinit var planner:PlanAima 
-		
-		
-		var GoingHome = false 
+		val MapName    = "mapmentalfirst"
 		return { //this:ActionBasciFsm
 				state("activate") { //this:State
 					action { //it:State
-						CommUtils.outmagenta("-------------------------------------------------")
-						CommUtils.outmagenta("completemapconmapper.qak")
-						CommUtils.outmagenta("-------------------------------------------------")
-						 mapper.loadRoomMap("map25new")  
+						forward("init", "init(false)" ,"robotservice" ) 
+						delay(1000) 
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+					}	 	 
+					 transition( edgeName="goto",targetState="coverNextColumn", cond=doswitch() )
+				}	 
+				state("coverNextColumn") { //this:State
+					action { //it:State
+						CommUtils.outblue("$name | coverNextColumn")
+						request("step", "step($Step)" ,"robotservice" )  
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+					}	 	 
+					 transition(edgeName="t011",targetState="coverColumn",cond=whenReply("stepdone"))
+					transition(edgeName="t012",targetState="backtop",cond=whenReply("stepfailed"))
+				}	 
+				state("coverColumn") { //this:State
+					action { //it:State
+						 stepok = stepok + 1
+								   mapper.doMove("w")
+						CommUtils.outblack("coverColumn stepok=$stepok")
+						delay(300) 
+						request("step", "step($Step)" ,"robotservice" )  
+						//genTimer( actor, state )
+					}
+					//After Lenzi Aug2002
+					sysaction { //it:State
+					}	 	 
+					 transition(edgeName="t013",targetState="coverColumn",cond=whenReply("stepdone"))
+					transition(edgeName="t014",targetState="backtop",cond=whenReply("stepfailed"))
+				}	 
+				state("backtop") { //this:State
+					action { //it:State
+						CommUtils.outblue("$name in ${currentState.stateName} | $currentMsg | ${Thread.currentThread().getName()} n=${Thread.activeCount()}")
+						 	   
+						  mapper.updateMapObstacleOnCurrentDirection()  
+						CommUtils.outblack("backtop")
+						forward("move", "move(l)" ,"robotservice" ) 
+						 mapper.doMove("l")  
+						delay(300) 
+						forward("move", "move(l)" ,"robotservice" ) 
+						 mapper.doMove("l")  
+						delay(300) 
 						 mapper.showCurrentRobotState()  
-						 planner    = PlanAima(mapper)  
+						request("step", "step($Step)" ,"robotservice" )  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="work", cond=doswitch() )
+					 transition(edgeName="t015",targetState="gototop",cond=whenReply("stepdone"))
+					transition(edgeName="t016",targetState="turnAndStep",cond=whenReply("stepfailed"))
 				}	 
-				state("work") { //this:State
+				state("gototop") { //this:State
 					action { //it:State
-						 CurPlan = planner.planForNextDirtyCompact()   
-						 GoingHome = false                             
-						CommUtils.outblue("$name | CurPlan=$CurPlan GoingHome=$GoingHome")
-						if(  CurPlan.length == 0  
-						 ){ mapper.saveRoomMap( MapAllName )   
-						 System.exit(0)                     
-						}
-						CommUtils.outblack("$name | work wait goon .............. ")
+						  
+								   mapper.doMove("w")
+						 		   stepok = stepok - 1 
+						CommUtils.outblack("gototop stepok=$stepok")
+						delay(300) 
+						request("step", "step($Step)" ,"robotservice" )  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="execThePlan", cond=doswitch() )
+					 transition(edgeName="t017",targetState="gototop",cond=whenReplyGuarded("stepdone",{ stepok > 0  
+					}))
+					transition(edgeName="t018",targetState="turnAndStep",cond=whenReplyGuarded("stepdone",{ stepok == 0  
+					}))
+					transition(edgeName="t019",targetState="turnAndStep",cond=whenReply("stepfailed"))
 				}	 
-				state("execThePlan") { //this:State
+				state("turnAndStep") { //this:State
 					action { //it:State
-						CommUtils.outyellow("$name | execThePlan CurPlan=$CurPlan GoingHome=$GoingHome")
-						if(  CurPlan.length > 0  
-						 ){  CurMove = ""+CurPlan[0]; 
-										CurPlan = CurPlan.drop(1) 
-						}
-						else
-						 { CurMove=""  
-						 }
+						forward("move", "move(r)" ,"robotservice" ) 
+						 mapper.doMove("r")  
+						delay(300) 
+						request("step", "step($Step)" ,"robotservice" )  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="doMove", cond=doswitchGuarded({ (CurMove.length > 0)  
-					}) )
-					transition( edgeName="goto",targetState="endOfPlan", cond=doswitchGuarded({! ( (CurMove.length > 0)  
-					) }) )
+					 transition(edgeName="t020",targetState="posForNextColumn",cond=whenReply("stepdone"))
+					transition(edgeName="t021",targetState="endOfWork",cond=whenReply("stepfailed"))
 				}	 
-				state("doMove") { //this:State
+				state("posForNextColumn") { //this:State
 					action { //it:State
-						CommUtils.outcyan("$name | domove $CurMove")
+						 mapper.doMove("w")  
+						forward("move", "move(r)" ,"robotservice" ) 
+						 mapper.doMove("r")  
+						CommUtils.outblack("posForNextColumn stepok=$stepok")
+						 mapper.showCurrentRobotState()  
 						delay(500) 
-						if(  CurMove == "w"  
-						 ){ StepInPlan = true   
-						}
-						if(  CurMove == "l"  
-						 ){ vr.move("l")  
-						 mapper.doMove(  "l", "" )   
-						 StepInPlan = false  
-						}
-						if(  CurMove == "r"  
-						 ){ vr.move("r")  
-						  mapper.doMove(  "r", "" )   
-						 StepInPlan = false   
-						}
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="dostep", cond=doswitchGuarded({ StepInPlan  
-					}) )
-					transition( edgeName="goto",targetState="execThePlan", cond=doswitchGuarded({! ( StepInPlan  
-					) }) )
+					 transition( edgeName="goto",targetState="coverNextColumn", cond=doswitch() )
 				}	 
-				state("dostep") { //this:State
+				state("endOfWork") { //this:State
 					action { //it:State
-						 vr.stepAsynch(Step)  
+						CommUtils.outblack("$name | endOfWork")
+						  mapper.showCurrentRobotState()	 
+						 mapper.saveRoomMap( MapName  )    
+						CommUtils.outblack("$name | endOfWork")
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition(edgeName="t00",targetState="stepcompleted",cond=whenReply("stepdone"))
-					transition(edgeName="t01",targetState="planko",cond=whenReply("stepfailed"))
+					 transition( edgeName="goto",targetState="turn180", cond=doswitch() )
 				}	 
-				state("stepcompleted") { //this:State
+				state("turn180") { //this:State
 					action { //it:State
-						CommUtils.outblue("$name | stepcompleted")
-						 mapper.doMove(  "w", "" )  
+						CommUtils.outblack("$name | turn r")
+						forward("move", "move(r)" ,"robotservice" ) 
+						 mapper.doMove("r")  
+						  mapper.showCurrentRobotState()	 
+						delay(300) 
+						CommUtils.outblack("$name | turn r")
+						forward("move", "move(l)" ,"robotservice" ) 
+						 mapper.doMove("r")  
+						  mapper.showCurrentRobotState()	 
+						delay(300) 
+						CommUtils.outblack("$name | w")
+						request("step", "step($Step)" ,"robotservice" )  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="execThePlan", cond=doswitch() )
+					 transition(edgeName="t022",targetState="backToHome",cond=whenReply("stepdone"))
+					transition(edgeName="t023",targetState="strange",cond=whenReply("stepfailed"))
 				}	 
-				state("endOfPlan") { //this:State
+				state("backToHome") { //this:State
 					action { //it:State
-						CommUtils.outmagenta("$name | endOfPlan")
-						 mapper.showCurrentRobotState()    
+						 mapper.doMove("w")    
+						delay(200) 
+						request("step", "step($Step)" ,"robotservice" )  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="work", cond=doswitchGuarded({ ! GoingHome  
-					}) )
-					transition( edgeName="goto",targetState="endwork", cond=doswitchGuarded({! ( ! GoingHome  
-					) }) )
+					 transition(edgeName="t024",targetState="backToHome",cond=whenReply("stepdone"))
+					transition(edgeName="t025",targetState="turnAndStop",cond=whenReply("stepfailed"))
 				}	 
-				state("planko") { //this:State
+				state("turnAndStop") { //this:State
 					action { //it:State
-						CommUtils.outred("$name | planko with CurPlan=$CurPlan GoingHome=$GoingHome")
-						 mapper.updateMapObstacleOnCurrentDirection()  
+						forward("move", "move(l)" ,"robotservice" ) 
+						 mapper.doMove("l")  
 						 mapper.showCurrentRobotState()  
+						 mapper.saveRoomMap( "map25new"  )    
+						 mapper.nextDirty( )  
+						 System.exit(0)  
 						//genTimer( actor, state )
 					}
 					//After Lenzi Aug2002
 					sysaction { //it:State
 					}	 	 
-					 transition( edgeName="goto",targetState="backtohome", cond=doswitchGuarded({ ! GoingHome  
-					}) )
-					transition( edgeName="goto",targetState="ignoreHit", cond=doswitchGuarded({! ( ! GoingHome  
-					) }) )
-				}	 
-				state("backtohome") { //this:State
-					action { //it:State
-						CommUtils.outgreen("$name | going backtohome ")
-						 planner.setGoal(0,0)                
-						 CurPlan = planner.doPlanCompact()   
-						CommUtils.outmagenta("$name | tohome CurPlan=$CurPlan  ")
-						 GoingHome = true                    
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="execThePlan", cond=doswitch() )
-				}	 
-				state("ignoreHit") { //this:State
-					action { //it:State
-						 main.resources.UserControl.doBeeps()  
-						CommUtils.outred("$name | ignoreHit GoingHome=$GoingHome")
-						 mapper.doMove(  "w", "" )  
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="execThePlan", cond=doswitch() )
-				}	 
-				state("endwork") { //this:State
-					action { //it:State
-						CommUtils.outblue("$name | endwork since athome ")
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition( edgeName="goto",targetState="tuneAtHome", cond=doswitch() )
-				}	 
-				state("tuneAtHome") { //this:State
-					action { //it:State
-						delay(500) 
-						 val Dir = mapper.getDirection(); var res = false  
-						CommUtils.outmagenta("$name | tuneAtHome Dir=$Dir")
-						if(  Dir == "upDir"  
-						 ){CommUtils.outyellow("$name | tuneAtHome upDir ")
-						 res = vr.step( 300 )  
-						CommUtils.outyellow("$name | tuneAtHome updDir res=$res ")
-						 vr.move( "l" )        
-						 mapper.doMove( "l" )  
-						 res = vr.step( 300 )  
-						CommUtils.outyellow("$name | tuneAtHome updDir res=$res ")
-						 vr.move( "l" )        
-						 mapper.doMove( "l" )  
-						CommUtils.outblack("$name |  ${mapper.getDirection()}")
-						}
-						if(  Dir == "leftDir"  
-						 ){ res = vr.step( 300 )  
-						CommUtils.outyellow("$name | tuneAtHome leftDir res=$res ")
-						 vr.move( "r" )        
-						 mapper.doMove( "r" )  
-						 vr.step( 300 )        
-						CommUtils.outyellow("$name | tuneAtHome leftDir res=$res ")
-						 vr.move( "l" )  
-						 vr.move( "l" )        
-						 vr.move( "l" )  
-						 vr.move( "l" )        
-						}
-						 mapper.showCurrentRobotState()  
-						CommUtils.outblack("$name | tuneAtHome wait goon .............. ")
-						//genTimer( actor, state )
-					}
-					//After Lenzi Aug2002
-					sysaction { //it:State
-					}	 	 
-					 transition(edgeName="t02",targetState="work",cond=whenDispatch("goon"))
 				}	 
 				state("strange") { //this:State
 					action { //it:State
